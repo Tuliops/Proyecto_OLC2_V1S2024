@@ -23,10 +23,15 @@ function editor(id, language, lineNumbers = true, readOnly = false, styleActiveL
 /**
  * Tabla de Errores 
  */
-function getErrors() {
-
+function getErrors(e) {
     let info = '<tr><th>No.</th><th>Tipo</th><th>Descripción</th><th>Linea</th><th>Columna</th></tr>'
+    if (isLexicalError(e)){
+        info += `<tr><td>1</td><td>${"Léxico"}</td><td>${"Se ha encontrado un caracter que no pertenece al lenguaje: " + e.found}</td><td>${e.location.start.line}</td><td>${e.location.start.column}</td></tr>`
+    }else {
+        info += `<tr><td>1</td><td>${"Sintátctico"}</td><td>${e.message}</td><td>${e.location.start.line}</td><td>${e.location.start.column}</td></tr>`
+    }
     document.getElementById('errors-report').innerHTML = info
+    
 
 
 }
@@ -34,11 +39,26 @@ function getErrors() {
  * Tabla de simbolos 
  */
 function getSymbolsTable() {
-
     let info = '<tr><th>No.</th><th>ID</th><th>Tipo</th><th>Tipo de Dato</th><th>Entorno</th><th>Linea</th><th>Columna</th></tr>'
     document.getElementById('symb-report').innerHTML = info
 
 
+}
+
+function isLexicalError(e) {
+    const validIdentifier = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/;
+    const validInteger = /^[0-9]+$/;
+    const validRegister = /^[a-zA-Z][0-9]+$/;
+    const validCharacter = /^[a-zA-Z0-9_$,\[\]#"]$/;
+    if (e.found) {
+      if (!validIdentifier.test(e.found) && 
+          !validInteger.test(e.found) &&
+          !validRegister.test(e.found) &&
+          !validCharacter.test(e.found)) {
+        return true; // Error léxico
+      }
+    }
+    return false; // Error sintáctico
 }
 /**
  * Tabla de Tokens 
@@ -56,18 +76,6 @@ function getTokens() {
  * crear el cst
  */
 function graphCST(DOTstring) {
-    DOTstring = "digraph G {"
-       
-        + "0 -> 1;"
-       
-        + "2 -> 3;"
-      
-        + " 4 -> 5;"
-     
-        + " 4 -> 6;"
-        + " 2 -> 4;"
-        + " 0 -> 2;"
-        + "}"
     console.log(DOTstring)
     var container = document.getElementById("mynetwork");
     var parsedData = vis.parseDOTNetwork(DOTstring);
@@ -77,12 +85,12 @@ function graphCST(DOTstring) {
     }
     var options = {
         nodes: {
-            widthConstraint: 20,
+            widthConstraint: 70,
         },
         layout: {
             hierarchical: {
-                levelSeparation: 60,
-                nodeSpacing: 80,
+                levelSeparation: 100,
+                nodeSpacing: 100,
                 parentCentralization: true,
                 direction: 'UD',        // UD, DU, LR, RL
                 sortMethod: 'directed',  // hubsize, directed
@@ -159,6 +167,7 @@ const analysis = async () => {
     try {
         iniciarContador();
         let resultado = PARSE.parse(text);
+        graphCST(resultado.getDot(resultado));
         terminarContador();
         var jsonString = JSON.stringify(resultado, null, 2);
 
@@ -167,6 +176,7 @@ const analysis = async () => {
 
     } catch (error) {
         consoleResult.setValue(error.message);
+        getErrors(error)
     }
 }
 
