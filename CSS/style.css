@@ -1,4 +1,4 @@
-:root{
+:root {
     --text: 'Montserrat', sans-serif;
     --white: #fff;
     --back: #0D1117;
@@ -7,14 +7,18 @@
     --button_hover: #2EA043;
 
 }
-html{
+
+html {
     box-sizing: border-box;
     font-size: 62.5%;
 }
-*,*::before{
+
+*,
+*::before {
     box-sizing: inherit;
 }
-body{
+
+body {
     font-family: var(--text);
     font-size: 1.6rem;
     line-height: 2;
@@ -24,43 +28,55 @@ body{
     -ms-user-select: none;
     user-select: none;
 }
+
 /*Chrome, Safari, Edge, Opera*/
 input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button{
+input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
 /*global*/
-.container{
+.container {
     width: 100%;
     margin: 0 auto;
 }
-a{
+
+a {
     text-decoration: none;
 }
-h1,h2,h3,h4{
+
+h1,
+h2,
+h3,
+h4 {
     font-family: var(--text);
 }
-h1{
+
+h1 {
     font-size: 2.5rem;
 }
-h2{
+
+h2 {
     font-size: 2.5rem;
     color: #FFFFFF;
 }
-.header{
+
+.header {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
-.bar{
+
+.bar {
     padding: 0rem 2rem;
     background-color: var(--bar);
     flex-shrink: 1;
     z-index: 2;
 }
+
 @media (min-width: 768px) {
-    .bar{
+    .bar {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -70,107 +86,126 @@ h2{
         width: 100%;
     }
 }
+
 @media (min-width: 768px) {
-    .navigation{
+    .navigation {
         display: flex;
         gap: 2.5rem;
         background-color: var(--bar);
     }
 }
-.navigation__link{
+
+.navigation__link {
     display: block;
     text-align: center;
     font-size: 1.5rem;
     color: var(--white);
 }
+
 /* utilidades */
-.no-margin{
+.no-margin {
     margin: 0;
 }
-.center-text{
+
+.center-text {
     text-align: center;
 }
+
 /* options menu */
-ul{
+ul {
     margin: 0;
     padding: 0;
     list-style: none;
     z-index: 2;
 }
-li{
+
+li {
     list-style: none;
     float: left;
     z-index: 2;
 }
-li a{
+
+li a {
     display: block;
     padding: 1rem .5rem;
     color: var(--white);
     text-decoration: none;
 }
-li ul{
+
+li ul {
     display: none;
     position: absolute;
 }
-li:hover > ul{
+
+li:hover>ul {
     display: inherit;
 }
-li ul li{
+
+li ul li {
     width: 25rem;
     float: none;
     display: list-item;
     position: relative;
 }
-li ul li a{
+
+li ul li a {
     padding: 1rem 2rem;
     background-color: var(--bar);
     z-index: 2;
 }
-li ul li a:hover{
+
+li ul li a:hover {
     background-color: #171e27;
 }
+
 /* Logo */
-.logo{
+.logo {
     display: flex;
     align-items: center;
     color: var(--white);
 }
-.logo__name{
+
+.logo__name {
     font-weight: 400;
     margin-left: 10px;
 }
-.logo__bold{
+
+.logo__bold {
     font-weight: 600;
 }
+
 /* Estilo para la imagen junto al logo */
 .logo img {
     margin: auto;
     max-width: 2.5rem;
     height: auto;
 }
+
 @media (max-width: 410px) {
-    .logo__name{
+    .logo__name {
         font-weight: 400;
         font-size: 3rem;
     }
-    .logo__bold{
+
+    .logo__bold {
         font-weight: 600;
         font-size: 3rem;
     }
 }
 
 /*container compile*/
-.containerCompile{
+.containerCompile {
     display: flex;
     width: 100%;
     justify-content: flex-start;
     padding: 7.5rem 1rem 1rem 1rem;
 }
-.button{
+
+.button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:var(--button);
+    background-color: var(--button);
     /* border-radius: 5rem; */
     border: 0;
     box-sizing: border-box;
@@ -183,7 +218,8 @@ li ul li a:hover{
     height: 4rem;
     margin-bottom: 1rem;
 }
-.buttonCL{
+
+.buttonCL {
     background-color: red;
     display: flex;
     justify-content: center;
@@ -200,44 +236,53 @@ li ul li a:hover{
     height: 4rem;
     margin-bottom: 1rem;
 }
+
 @media (max-width: 750px) {
     .button {
         width: 100%;
     }
 }
+
 .button:hover {
-    background-color:var(--button_hover);
+    background-color: var(--button_hover);
 }
-.button img{
+
+.button img {
     width: 4rem;
     height: 4rem;
 }
+
 /* code mirror */
 .columns {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
+
 @media (max-width: 1081px) {
     .columns {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
 }
-.panel{
+
+.panel {
     margin: 0 1rem 0 1rem;
     padding: .1rem;
     line-height: 1.4;
     font-size: 10pt;
     background-color: rgb(48, 54, 61);
 }
+
 #editor {
     max-width: 100%;
     min-width: 90%;
 }
+
 #console {
     max-width: 100%;
     min-width: 90%;
 }
+
 /* modal */
 .modalmask {
     position: fixed;
@@ -249,17 +294,19 @@ li ul li a:hover{
     backdrop-filter: blur(1rem);
     background: rgba(0, 0, 0, 0.5);
     z-index: 3;
-    opacity:0;
+    opacity: 0;
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
     pointer-events: none;
     height: 100%;
 }
+
 .modalmask:target {
-    opacity:1;
+    opacity: 1;
     pointer-events: auto;
 }
+
 .close {
     color: #FFFFFF;
     line-height: 25px;
@@ -271,19 +318,21 @@ li ul li a:hover{
     text-decoration: none;
     font-weight: bold;
     font-size: 2.5rem;
-    border-radius:50%;
+    border-radius: 50%;
 }
-.close:hover{
+
+.close:hover {
     backdrop-filter: blur(25rem);
     background-color: rgba(255, 255, 255, .2);
 }
-.modalbox{
+
+.modalbox {
     position: relative;
     width: 95%;
     padding: 2rem;
     background: var(--back);
     color: var(--white);
-    border-radius:.6rem;
+    border-radius: .6rem;
     -webkit-transition: all 500ms ease-in;
     -moz-transition: all 500ms ease-in;
     transition: all 500ms ease-in;
@@ -291,19 +340,23 @@ li ul li a:hover{
     overflow: auto;
     height: 55rem;
 }
+
 /*Movimientos*/
 .movedown {
     margin: 0 auto;
     height: 70rem;
 }
-.modalmask:target .movedown{       
+
+.modalmask:target .movedown {
     margin: 5% auto;
 }
+
 /*Reportes*/
 .report {
     width: 100%;
     height: 100%;
 }
+
 /*Pestañas*/
 .containerTags {
     display: flex;
@@ -311,6 +364,7 @@ li ul li a:hover{
     justify-content: flex-start;
     padding: 0rem 1rem;
 }
+
 .tag {
     display: flex;
     justify-content: flex-start;
@@ -320,9 +374,11 @@ li ul li a:hover{
     background-color: rgb(31, 36, 44);
     padding: 0.5rem 1rem 0.5rem 2rem;
 }
+
 .tag:hover {
     background-color: rgb(48, 54, 61);
 }
+
 .tag-active {
     display: flex;
     justify-content: flex-start;
@@ -333,11 +389,12 @@ li ul li a:hover{
     padding: 0.5rem 1rem 0.5rem 2rem;
     border: .2rem solid rgb(48, 54, 61);
 }
-.close-b{
+
+.close-b {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:transparent;
+    background-color: transparent;
     border-radius: 5rem;
     border: 0;
     box-sizing: border-box;
@@ -349,8 +406,9 @@ li ul li a:hover{
     text-align: center;
     width: 2rem;
 }
+
 .close-b:hover {
-    background-color: rgba(125, 133, 144,.3);
+    background-color: rgba(125, 133, 144, .3);
 }
 
 .tmp {
@@ -364,34 +422,42 @@ li ul li a:hover{
     border-radius: 2rem 2rem 0 0;
     padding: 0.5rem 0 0.5rem 0;
 }
+
 /* table */
-.container-table{
+.container-table {
     width: 90%;
     color: var(--white);
     padding: 2rem;
     padding-bottom: 9rem;
 }
+
 table {
     border-radius: .6rem;
     border-collapse: collapse;
     font-family: var(--fontHeading);
     width: 100%;
 }
-th, td {
+
+th,
+td {
     text-align: left;
     padding: 8px;
 }
-tr:nth-child(even){
+
+tr:nth-child(even) {
     background-color: var(--secondary);
     padding: 4rem;
 }
+
 th {
     background-color: #0D1117;
     color: var(--white);
 }
-tr:hover{
+
+tr:hover {
     background-color: #bdcdd623;
 }
+
 /* SCROLL */
 /* Barra de desplazamiento */
 .modalbox::-webkit-scrollbar {
@@ -410,9 +476,15 @@ tr:hover{
     background-color: #bdcdd623;
 }
 
+.contador {
+    color: white;
+    font-size: 1.8em;
+    font-style: italic;
+    padding: 20px 50px;
+}
 
 textarea::placeholder {
     color: red;
     font-size: 1.2em;
     font-style: italic;
-    }
+}

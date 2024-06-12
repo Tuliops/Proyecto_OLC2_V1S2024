@@ -60,10 +60,9 @@
                     <li>
                         <a href="#" class="navigation__link">Archivo</a>
                         <ul>
-                            <li><a href="#" type="button" id="btn__open">Nuevo Archivo</a></li>
+                            <li><a href="#" type="button" id="btn__open">Abrir Archivo</a></li>
                    
-                            <li><a href="#" onclick="openFile()">Abrir Archivo</a></li>
-                            <li><a href="#" onclick="saveFile()">Guardar Archivo</a></li>
+                            <li><a href="#" id="btn__save">Guardar Archivo</a></li>
                         </ul>
                     </li>
                     <li>
@@ -145,13 +144,13 @@
     </div>
     <div class="container containerCompile">
         <button type="button" class="button" id="btn__analysis">Run</button>
-        <li></li>
+    
         <button type="button" class="buttonCL"  id="clearButton" >Clear</button>
+        <div id="contador" class="contador">Tiempo Analisis</div> <!-- Muestra el contador en la página -->
 
     </div>
     <div id="tags" class="container containerTags">
         <div class="tmp">
-            <div>d</div>
         </div>
     </div>
     <div class="container columns">
