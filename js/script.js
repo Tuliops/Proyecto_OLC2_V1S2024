@@ -30,6 +30,9 @@ function getErrors() {
 
 
 }
+/**
+ * Tabla de simbolos 
+ */
 function getSymbolsTable() {
 
     let info = '<tr><th>No.</th><th>ID</th><th>Tipo</th><th>Tipo de Dato</th><th>Entorno</th><th>Linea</th><th>Columna</th></tr>'
@@ -37,6 +40,9 @@ function getSymbolsTable() {
 
 
 }
+/**
+ * Tabla de Tokens 
+ */
 function getTokens() {
 
     let info = '<tr><th>No.</th><th>Lexema</th><th>Token</th><th>Linea</th><th>Columna</th></tr>'
@@ -44,7 +50,51 @@ function getTokens() {
 
 
 }
+/**
+ * CST
+ * la fucion debe resivir un DOTString
+ */
+function graphCST() {
+    DOTstring = "digraph G {"
+       
+        + "0 -> 1;"
+       
+        + "2 -> 3;"
+      
+        + " 4 -> 5;"
+     
+        + " 4 -> 6;"
+        + " 2 -> 4;"
+        + " 0 -> 2;"
+        + "}"
+    console.log(DOTstring)
+    var container = document.getElementById("mynetwork");
+    var parsedData = vis.parseDOTNetwork(DOTstring);
+    var data = {
+        nodes: parsedData.nodes,
+        edges: parsedData.edges
+    }
+    var options = {
+        nodes: {
+            widthConstraint: 20,
+        },
+        layout: {
+            hierarchical: {
+                levelSeparation: 60,
+                nodeSpacing: 80,
+                parentCentralization: true,
+                direction: 'UD',        // UD, DU, LR, RL
+                sortMethod: 'directed',  // hubsize, directed
+                shakeTowards: 'roots'  // roots, leaves                        
+            },
+        },
+    };
+    var network = new vis.Network(container, data, options);
+}
 
+function resetGraph(){
+    
+}
 /** Abrir Archivo */
 const openFile = async (editor) => {
     console.log('click en open file ')
@@ -112,7 +162,7 @@ const analysis = async () => {
         var jsonString = JSON.stringify(resultado, null, 2);
 
         consoleResult.setValue(jsonString);
-        
+
 
     } catch (error) {
         consoleResult.setValue(error.message);
@@ -142,12 +192,12 @@ let contadorId;
 function iniciarContador() {
     tiempoInicio = performance.now(); // Guardar el tiempo de inicio en milisegundos
     console.log('Contador iniciado.');
-  }
-  
-  // Función para terminar el contador y mostrar la duración en nanosegundos
-  function terminarContador() {
+}
+
+// Función para terminar el contador y mostrar la duración en nanosegundos
+function terminarContador() {
     const tiempoFin = performance.now(); // Guardar el tiempo de fin en milisegundos
     const duracionEnNanosegundos = (tiempoFin - tiempoInicio) * 1000000; // Convertir la duración a nanosegundos
     console.log(`La duración del contador es ${duracionEnNanosegundos} nanosegundos.`);
     document.getElementById('contador').innerHTML = `La duración del Analisis es ${tiempoFin - tiempoInicio} milisegundos.`
-  }
+}

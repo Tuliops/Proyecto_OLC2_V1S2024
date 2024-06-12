@@ -16,7 +16,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     
-       
+    <!--Graph-->
+    <script type="text/javascript" src="js/vis-network.min.js"></script>
 
 
 
@@ -69,7 +70,7 @@
                         <a href="#" class="navigation__link">Reportes</a>
                         <ul>
                             <li><a id="" href="#modal1" onclick="getErrors()">Errores</a></li>
-                            <li><a id="" href="#modal2" onclick="graphAST()">Generar Arbol</a></li>
+                            <li><a id="" href="#modal2" onclick="graphCST()">Generar Arbol</a></li>
                             <li><a id="" href="#modal3" onclick="getSymbolsTable()">Tabla de Simbolos</a></li>
                             <li><a id="" href="#modal4" onclick="getTokens()">Tokens</a></li>
                         </ul>
@@ -99,9 +100,9 @@
     <div class="container">
         <div id="modal2" class="modalmask">
             <form action="" autocomplete="off">
-                <div class="modalbox movedown">
+                <div  class="modalbox movedown">
                     <a href="#close" title="Close" class="close" onclick="resetGraph()">&times;</a>
-                    <div id="reportAST" class="report"></div>
+                    <div class="report" id="mynetwork" >Grafico </div>
                 </div>
             </form>
         </div>
