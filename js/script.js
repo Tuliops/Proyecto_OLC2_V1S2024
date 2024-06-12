@@ -52,9 +52,10 @@ function getTokens() {
 }
 /**
  * CST
- * la fucion debe resivir un DOTString
+ * la Funcion recibe debe recibir un sring  con dot para 
+ * crear el cst
  */
-function graphCST() {
+function graphCST(DOTstring) {
     DOTstring = "digraph G {"
        
         + "0 -> 1;"
