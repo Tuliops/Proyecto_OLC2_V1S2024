@@ -15,7 +15,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    
+
     <!--Graph-->
     <script type="text/javascript" src="js/vis-network.min.js"></script>
 
@@ -38,14 +38,14 @@
         integrity="sha512-zrCGHGmTpiZpzVJ6BdiDfsUT6t8+oOKmOtfU82GhBo/7sk/cns7phhKXSWmGH6uACPqgjP8QmgczNBY7HMB9TQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/midnight.min.css"
-     integrity="sha512-ZTF0X2l7PXEFDyP+MSOK0QM3Qh+C+lQ70Tqx4vQb3+6Uxh2lYkwmbSbpDmksZaX8w0sSz8ctVBnPSzAR1TQlzA==" 
-     crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-ZTF0X2l7PXEFDyP+MSOK0QM3Qh+C+lQ70Tqx4vQb3+6Uxh2lYkwmbSbpDmksZaX8w0sSz8ctVBnPSzAR1TQlzA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 
 
     <link rel="stylesheet" href="CSS/style.css">
-    
+
     <title>Simulador ARM</title>
 
 </head>
@@ -57,13 +57,14 @@
                 <nav class="navigation">
                     <a href="#" class="logo">
 
-                        <h1 class="logo__name no-margin center-text">--<span class="logo__bold">ARM64 Simulator</span></h1>
+                        <h1 class="logo__name no-margin center-text">--<span class="logo__bold">ARM64 Simulator</span>
+                        </h1>
                     </a>
                     <li>
                         <a href="#" class="navigation__link">Archivo</a>
                         <ul>
                             <li><a href="#" type="button" id="btn__open">Abrir Archivo</a></li>
-                   
+
                             <li><a href="#" id="btn__save">Guardar Archivo</a></li>
                         </ul>
                     </li>
@@ -74,6 +75,8 @@
                             <li><a id="" href="#modal2" onclick="graphCST()">Generar Arbol</a></li>
                             <li><a id="" href="#modal3" onclick="getSymbolsTable()">Tabla de Simbolos</a></li>
                             <li><a id="" href="#modal4" onclick="getTokens()">Tokens</a></li>
+                            <li><a id="" href="#modal5" onclick="getTablaCuadruplos()">Tabla Cuadruplos</a></li>
+
                         </ul>
                     </li>
                 </nav>
@@ -101,9 +104,9 @@
     <div class="container">
         <div id="modal2" class="modalmask">
             <form action="" autocomplete="off">
-                <div  class="modalbox movedown">
+                <div class="modalbox movedown">
                     <a href="#close" title="Close" class="close" onclick="resetGraph()">&times;</a>
-                    <div class="report" id="mynetwork" >Grafico </div>
+                    <div class="report" id="mynetwork">Grafico </div>
                 </div>
             </form>
         </div>
@@ -144,11 +147,30 @@
             </form>
         </div>
     </div>
+    <div class="container">
+        <div id="modal5" class="modalmask">
+            <form action="" autocomplete="off">
+                <div class="modalbox movedown">
+                    <h1 class="center-text">Tabla de Cuadruplos</h1>
+                    <table id="cuadruplos-report">
+                        <tr>
+                            <th id="noBooks" class="center-text">
+                                Cuadruplos
+                            </th>
+                        </tr>
+                        
+                    </table>
+                    <a href="#close" title="Close" class="close">&times;</a>
+                    <div id="report" class="report"></div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="container containerCompile">
         <button type="button" class="button" id="btn__analysis">Run</button>
-    
-        <button type="button" class="buttonCL"  id="clearButton" >Clear</button>
-        <div id="contador" class="contador">Tiempo Analisis</div> <!-- Muestra el contador en la página -->
+
+        <button type="button" class="buttonCL" id="clearButton">Clear</button>
+        <div id="contador" class="contador">Tiempo Analisis...</div> <!-- Muestra el contador en la página -->
 
     </div>
     <div id="tags" class="container containerTags">
@@ -158,20 +180,36 @@
     <div class="container columns">
         <div>
             <h2>Entrada</h2>
-            <textarea id="editor" placeholder="Enter ARM64 assembly instructions..." ></textarea>
+            <textarea id="editor" placeholder="Enter ARM64 assembly instructions..."></textarea>
         </div>
+
         <div>
-            <h2>Salida</h2>
-            <textarea  id="console"  readonly placeholder="Parsed output will appear here..."></textarea>
+            <nav class="navigationR">
+                
+                        <h2>Console</h2>
+                
+                    <a href="#modal2">
+                        <h2>CST</h2>
+                    </a>
+                    <a href="#modal5" onclick="getTablaQuadruplos()">
+                        <h2>Quadruples</h2>
+                    </a>
+                <
+            </nav>
+              
+            
+         
+
+            <textarea id="console" readonly placeholder="Parsed output will appear here..."></textarea>
         </div>
 
 
     </div>
 
-        <!-- ============================= PARSER ============================== -->
-        <script src="js/parser.js"></script>
-        <!-- ============================= SCRIPT ============================== -->
-        <script src="js/script.js"></script>
+    <!-- ============================= PARSER ============================== -->
+    <script src="js/parser.js"></script>
+    <!-- ============================= SCRIPT ============================== -->
+    <script src="js/script.js"></script>
 </body>
 
 </html>

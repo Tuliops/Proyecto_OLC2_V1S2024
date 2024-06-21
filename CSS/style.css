@@ -93,6 +93,11 @@ h2 {
         gap: 2.5rem;
         background-color: var(--bar);
     }
+    .navigationR {
+        display: flex;
+        gap: 2.7rem;
+        background-color: var(--back);
+    }
 }
 
 .navigation__link {
@@ -236,7 +241,22 @@ li ul li a:hover {
     height: 4rem;
     margin-bottom: 1rem;
 }
-
+.buttonShow {
+    background-color: #004444;
+    justify-content: center;
+    align-items: center;
+    /* border-radius: 5rem; */
+    border: 0;
+    box-sizing: border-box;
+    color: var(--white);
+    cursor: pointer;
+    font-size: 1.8rem;
+    outline: 0;
+    text-align: center;
+    width: 14rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+}
 @media (max-width: 750px) {
     .button {
         width: 100%;
@@ -282,6 +302,7 @@ li ul li a:hover {
     max-width: 100%;
     min-width: 90%;
 }
+
 
 /* modal */
 .modalmask {

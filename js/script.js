@@ -1,8 +1,10 @@
-let errorTable, symbolTable, Arm64Editor, consoleResult, dotStringCst = "";
+let errorTable, symbolTable, Arm64Editor, consoleResult, dotStringCst = "", consoleTablaCuadruplos, quadTable;
 /*Scrips Code Mirror */
+
 $(document).ready(function () {
     Arm64Editor = editor('editor', 'text/x-rustsrc');
     consoleResult = editor('console', '', false, true, false);
+    consoleTablaCuadruplos = editor('TablaCuadruplos', '', false, true, false); r
 
 
 });
@@ -25,13 +27,13 @@ function editor(id, language, lineNumbers = true, readOnly = false, styleActiveL
  */
 function getErrors(e) {
     let info = '<tr><th>No.</th><th>Tipo</th><th>Descripción</th><th>Linea</th><th>Columna</th></tr>'
-    if (isLexicalError(e)){
+    if (isLexicalError(e)) {
         info += `<tr><td>1</td><td>${"Léxico"}</td><td>${"Se ha encontrado un caracter que no pertenece al lenguaje: " + e.found}</td><td>${e.location.start.line}</td><td>${e.location.start.column}</td></tr>`
-    }else {
+    } else {
         info += `<tr><td>1</td><td>${"Sintátctico"}</td><td>${e.message}</td><td>${e.location.start.line}</td><td>${e.location.start.column}</td></tr>`
     }
     document.getElementById('errors-report').innerHTML = info
-    
+
 
 
 }
@@ -51,12 +53,12 @@ function isLexicalError(e) {
     const validRegister = /^[a-zA-Z][0-9]+$/;
     const validCharacter = /^[a-zA-Z0-9_$,\[\]#"]$/;
     if (e.found) {
-      if (!validIdentifier.test(e.found) && 
-          !validInteger.test(e.found) &&
-          !validRegister.test(e.found) &&
-          !validCharacter.test(e.found)) {
-        return true; // Error léxico
-      }
+        if (!validIdentifier.test(e.found) &&
+            !validInteger.test(e.found) &&
+            !validRegister.test(e.found) &&
+            !validCharacter.test(e.found)) {
+            return true; // Error léxico
+        }
     }
     return false; // Error sintáctico
 }
@@ -101,8 +103,8 @@ function graphCST(DOTstring) {
     var network = new vis.Network(container, data, options);
 }
 
-function resetGraph(){
-    
+function resetGraph() {
+
 }
 /** Abrir Archivo */
 const openFile = async (editor) => {
@@ -157,6 +159,8 @@ const saveFile = async (editor) => {
 const cleanEditor = (editor) => {
     editor.setValue("");
     consoleResult.setValue('')
+    document.getElementById('contador').innerHTML = `Tiempo Analisis...`
+
 }
 
 
@@ -207,8 +211,21 @@ function iniciarContador() {
 
 // Función para terminar el contador y mostrar la duración en nanosegundos
 function terminarContador() {
-    const tiempoFin = performance.now(); // Guardar el tiempo de fin en milisegundos
-    const duracionEnNanosegundos = (tiempoFin - tiempoInicio) * 1000000; // Convertir la duración a nanosegundos
+    let tiempoFin = performance.now(); // Guardar el tiempo de fin en milisegundos
+    let duracionEnNanosegundos = (tiempoFin - tiempoInicio) * 1000000; // Convertir la duración a nanosegundos
+    duracionEnNanosegundos = duracionEnNanosegundos.toFixed(2)
     console.log(`La duración del contador es ${duracionEnNanosegundos} nanosegundos.`);
-    document.getElementById('contador').innerHTML = `La duración del Analisis es ${tiempoFin - tiempoInicio} milisegundos.`
+    document.getElementById('contador').innerHTML = `La duración del Analisis es ${(tiempoFin - tiempoInicio).toFixed(2)} milisegundos.`
+}
+
+
+//Funcion que envia los datos al div de la tabla de cuadruplos 
+// Manejada como un  una taba en html 
+function getTablaQuadruplos() {
+
+    let info = '<tr><th>OP</th><th>arg1</th><th>arg2</th><th>arg3</th><th>Result</th></tr>'
+     info += '<tr><td>+</td><td>2</td><td>3</td><td>4</td><td>9</td></tr>'
+
+    document.getElementById('cuadruplos-report').innerHTML = info
+
 }
