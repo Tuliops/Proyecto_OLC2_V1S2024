@@ -2,12 +2,26 @@ let errorTable, symbolTable, Arm64Editor, consoleResult, dotStringCst = "", cons
 /*Scrips Code Mirror */
 
 $(document).ready(function () {
+    consoleResult = ConsoleOut('console', '', 'text/x-rustsrc');
     Arm64Editor = editor('editor', 'text/x-rustsrc');
-    consoleResult = editor('console', '', false, true, false);
+
     consoleTablaCuadruplos = editor('TablaCuadruplos', '', false, true, false); r
 
 
 });
+
+function ConsoleOut(id, language, lineNumbers = true, readOnly = false, styleActiveLine = true){
+    return CodeMirror.fromTextArea(document.getElementById(id),{
+        lineNumbers: true,
+        styleActivateLine: true,
+        matchBrackets: true,
+        theme: "moxer",
+        scrollbarStyle: "null",
+        mode: "text/x-rustsrc",
+        
+        
+    })
+}
 
 function editor(id, language, lineNumbers = true, readOnly = false, styleActiveLine = true) {
     return CodeMirror.fromTextArea(document.getElementById(id), {
@@ -177,6 +191,8 @@ const analysis = async () => {
 
         consoleResult.setValue(jsonString);
 
+        //Datos a la tabla de Registros
+        setTablaRegistros("")
 
     } catch (error) {
         consoleResult.setValue(error.message);
@@ -228,4 +244,12 @@ function getTablaQuadruplos() {
 
     document.getElementById('cuadruplos-report').innerHTML = info
 
+}
+
+//Funcion envia los datos a la tabla de Regisgros
+
+function setTablaRegistros(str){
+    let info = '<tr><th>Register</th><th>Alias</th><th>Value</th></tr>'
+    info += '<tr><td>x0</td><td>zero</td><td>0</td></tr>'
+    document.getElementById('TablaRegistros').innerHTML = info
 }

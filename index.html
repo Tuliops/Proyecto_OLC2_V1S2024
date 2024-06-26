@@ -34,7 +34,7 @@
         integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Theme moxer -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/moxer.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/moxer.min.css"
         integrity="sha512-zrCGHGmTpiZpzVJ6BdiDfsUT6t8+oOKmOtfU82GhBo/7sk/cns7phhKXSWmGH6uACPqgjP8QmgczNBY7HMB9TQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/midnight.min.css"
@@ -147,6 +147,7 @@
             </form>
         </div>
     </div>
+
     <div class="container">
         <div id="modal5" class="modalmask">
             <form action="" autocomplete="off">
@@ -158,7 +159,7 @@
                                 Cuadruplos
                             </th>
                         </tr>
-                        
+
                     </table>
                     <a href="#close" title="Close" class="close">&times;</a>
                     <div id="report" class="report"></div>
@@ -183,29 +184,63 @@
             <textarea id="editor" placeholder="Enter ARM64 assembly instructions..."></textarea>
         </div>
 
+        <div class="container-table">
+            <h2>Tabla de registros </h2>
+            <div style="overflow-y: scroll; height: 200px; color:white">
+                <table class="tables" id="TablaRegistros">
+                    <tr>
+                        <th>Register</th>
+                        <th>Alias</th>
+                        <th>Value</th>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+
+
+        <!-- #region  Consola y Tabla de Cuadruplos-->
+
+
+
         <div>
             <nav class="navigationR">
-                
-                        <h2>Console</h2>
-                
-                    <a href="#modal2">
-                        <h2>CST</h2>
-                    </a>
-                    <a href="#modal5" onclick="getTablaQuadruplos()">
-                        <h2>Quadruples</h2>
-                    </a>
-                <
-            </nav>
-              
-            
-         
 
-            <textarea id="console" readonly placeholder="Parsed output will appear here..."></textarea>
+
+
+                <a href="#modal2">
+                    <h2 style="background-color: green;;">CST</h2>
+                </a>
+                <a href="#modal5" onclick="getTablaQuadruplos()">
+                    <h2 style="background-color: blue;">Quadruples</h2>
+                </a>
+
+            </nav>
+
+
+
+
+
         </div>
 
 
     </div>
+    <div class="container">
+        <h2 style="color: cadetblue;">Console</h2>
+        <textarea id="console" readonly placeholder="..."></textarea>
+    </div>
 
+    <div class="container">
+        <br>
+        <h3 style="color: red;">
+            0791 : Organización de Lenguajes y Compiladores 2
+
+            <br>
+            Grupo 19
+        </h3>
+
+    </div>
     <!-- ============================= PARSER ============================== -->
     <script src="js/parser.js"></script>
     <!-- ============================= SCRIPT ============================== -->
