@@ -1,0 +1,371 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header, footer {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
+section {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+#editor, #output {
+    flex-basis: 45%;
+}
+
+#registers, #flags {
+    flex-basis: 20%;
+}
+
+#memory {
+    flex-basis: 50%;
+}
+
+#reports {
+    flex-basis: 80%;
+}
+
+#toolbar, #executionButtons, #reportToolbar, #reportOptions {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#reportOptions {
+    display: none;
+    flex-direction: column;
+}
+
+#reportToolbar button, button {
+    padding: 0.5rem 1rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#reportToolbar button:hover, button:hover {
+    background-color: #555;
+}
+
+#editorWrapper {
+    display: flex;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+}
+
+#lineNumbers {
+    background-color: #f0f0f0;
+    border-right: 1px solid #ccc;
+    padding: 0.5rem;
+    text-align: right;
+    user-select: none;
+    overflow: hidden;
+}
+
+#lineNumbers div {
+    height: 1.0em;
+    line-height: 1.2em;
+}
+
+textarea, #codeArea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    resize: none;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    line-height: 1.2em;
+    font-family: monospace;
+    overflow: auto;
+}
+
+#codeArea {
+    height: 400px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    white-space: pre;
+    overflow-y: scroll;
+    overflow-x: auto;
+}
+
+.highlight {
+    background-color: yellow;
+}
+
+pre {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+#registersWrapper, #flagsWrapper {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#memoryWrapper {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#registersTable, #flagsTable, #memoryTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#registersTable th, #registersTable td,
+#flagsTable th, #flagsTable td {
+    padding: 0.3rem;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+#registersTable th, #flagsTable th {
+    background-color: #333;
+    color: white;
+}
+
+#registersTable td:first-child, #flagsTable td:first-child {
+    background-color: #f0f0f0;
+    width: 50px;
+    text-align: center;
+}
+
+#registersTable td:nth-child(2), #flagsTable td:nth-child(2) {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow-x: auto;
+    text-overflow: ellipsis;
+}
+
+#memoryTable th, #memoryTable td {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+#memoryTable th {
+    background-color: #333;
+    color: white;
+}
+
+#memoryTable td {
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+#reportArea {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+#reportArea img {
+    max-width: 100%;
+    height: auto;
+}
+
+#memoryWrapper button {
+    padding: 0.5rem 1rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#memoryWrapper button:hover {
+    background-color: #555;
+}
+
+/* Estilo para #reportTable */
+#reportTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9; /* Fondo gris claro */
+}
+
+/* Estilo para #quadruplesTable */
+#quadruplesTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9; /* Fondo gris claro */
+}
+
+/* Estilo para #errorsTable */
+#errorsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9; /* Fondo gris claro */
+}
+
+/* Estilo para #symbolTable */
+#symbolTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9; /* Fondo gris claro */
+}
+
+/* Estilo para encabezados de tabla */
+#reportTable th,
+#quadruplesTable th,
+#errorsTable th,
+#symbolTable th {
+    background-color: #ddd; /* Fondo gris más oscuro para encabezados */
+    color: #333; /* Texto oscuro para encabezados */
+    font-weight: bold;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Estilo para celdas de tabla */
+#reportTable td,
+#quadruplesTable td,
+#errorsTable td,
+#symbolTable td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Estilo para filas impares (opcional) */
+#reportTable tbody tr:nth-child(odd),
+#quadruplesTable tbody tr:nth-child(odd),
+#errorsTable tbody tr:nth-child(odd),
+#symbolTable tbody tr:nth-child(odd) {
+    background-color: #f2f2f2; /* Fondo gris claro para filas impares */
+}
+
+/* Estilo para filas de encabezado */
+#reportTable thead tr,
+#quadruplesTable thead tr,
+#errorsTable thead tr,
+#symbolTable thead tr {
+    background-color: #ddd; /* Fondo gris más oscuro para filas de encabezado */
+}
+
+/* Estilo para primera columna (índices) */
+#reportTable th:first-child,
+#reportTable td:first-child,
+#quadruplesTable th:first-child,
+#quadruplesTable td:first-child,
+#errorsTable th:first-child,
+#errorsTable td:first-child,
+#symbolTable th:first-child,
+#symbolTable td:first-child {
+    font-weight: bold;
+}
+
+#reportImageWrapper {
+    position: relative;
+    overflow: auto;
+    max-width: 100%;
+    max-height: 400px; /* Ajuste aquí para hacerlo más alto */
+    border: 1px solid #ccc;
+    cursor: grab;
+}
+
+#reportImage {
+    max-width: none;
+    max-height: none;
+    transform-origin: 0 0;
+}
+
+#reportImage:active {
+    cursor: grabbing;
+}
+
+/* Estilos para la consola estilo bash */
+#consolePopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 900px;
+    height: 450px;
+    background-color: black;
+    color: white;
+    border: 2px solid #333;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+#consolePopup .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#consolePopup .close:hover,
+#consolePopup .close:focus {
+    color: white;
+    text-decoration: none;
+}
+
+#consolePopup #consoleOutput {
+    height: calc(100% - 60px);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-y: auto;
+    background-color: black;
+    color: #0f0; /* Color del texto verde */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #888;
+}
+
+#consolePopup #consoleInput {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #888;
+    background-color: transparent;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    outline: none;
+}
+
+#consolePopup #consoleInput:focus {
+    outline: none;
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador ARM64</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Simulador ARM64</h1>
+    </header>
+    <main>
+        <section id="editor">
+            <h2>Editor de Código</h2>
+            <div id="toolbar">
+                <button id="openFile">Abrir Archivo</button>
+                <button id="saveFile">Guardar Archivo</button>
+                <input type="file" id="fileInput" style="display: none;">
+            </div>
+            <div id="editorWrapper">
+                <div id="lineNumbers"></div>
+                <textarea id="codeArea" placeholder="Write your ARM64 code here..." spellcheck="false" rows="20" cols="40"></textarea>
+            </div>
+            <div id="executionButtons">
+                <button id="analyzeButton">Analizar</button>
+                <button id="runButton">Ejecutar</button>
+                <div id="timer" class="timer">Tiempo Análisis</div>
+            </div>
+        </section>
+        <section id="output">
+            <h2>Salida</h2>
+            <div class="toolbar">
+                <!-- Otras herramientas -->
+                <button id="clearOutput">Limpiar Consola</button>
+                <button id="debugButton">Debug</button>
+                <button id="bashButton">BASH</button> 
+                <button id="nextLineButton" style="display:none;">Next Line</button>
+            </div>            
+            <pre id="outputArea"></pre>
+        </section>
+        <section id="registers">
+            <h2>Registros ARM64</h2>
+            <button id="resetRegisters">Reiniciar Registros</button>
+            <div id="registersWrapper">
+                <table id="registersTable">
+                    <thead>
+                        <tr>
+                            <th>Registro</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Filas se generan dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="flags">
+            <h2>Flags ARM64</h2>
+            <div id="flagsWrapper">
+                <table id="flagsTable">
+                    <thead>
+                        <tr>
+                            <th>Flag</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Filas se generan dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="memory">
+            <h2>Memoria</h2>
+            <button id="resetMemory">Reiniciar Memoria</button>
+            <button id="prevPageButton">Página Anterior</button>
+            <button id="nextPageButton">Página Siguiente</button>
+            <div id="memoryWrapper">
+                <table id="memoryTable">
+                    <thead>
+                        <tr>
+                            <th>Dirección</th>
+                            <th colspan="16">Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Filas se generan dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="reports">
+            <h2>Reportes</h2>
+            <div id="reportToolbar">
+                <button id="generateReport">Generar Reporte</button>
+                <div id="reportOptions">
+                    <button id="cstReport">CST</button>
+                    <button id="viewFullTreeButton" style="display:none;">Ver Árbol Completo</button>
+                    <button id="quadReport">Cuádruplos</button>
+                    <button id="symbolTableReport">Tabla de Símbolos</button>
+                    <button id="errorReport">Errores</button>
+                </div>
+            </div>
+            <div id="reportArea">
+                <div id="reportImageWrapper">
+                    <img id="reportImage" src="" alt="Reporte" style="display:none;">
+                </div>
+                <table id="reportTable" style="display:none;">
+                    <thead>
+                        <tr>
+                            <th>Columna 1</th>
+                            <th>Columna 2</th>
+                            <!-- Más columnas según sea necesario -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Filas se generan dinámicamente -->
+                    </tbody>
+                </table>
+                <!-- Tabla de Cuádruplos -->
+                <table id="quadruplesTable" style="display:none;">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+                <!-- Tabla de Errores -->
+                <table id="errorsTable" style="display:none;">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+                <!-- Tabla de Símbolos -->
+                <table id="symbolTable" style="display:none;">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+        <div id="consolePopup" class="popup">
+            <div class="popup-content">
+                <div id="consoleOutputWrapper">
+                    <pre id="consoleOutput"></pre>
+                </div>
+                <input type="text" id="consoleInput" placeholder="Ingrese comando...">
+            </div>
+            <span id="closeConsole" class="close">&times;</span>
+        </div>               
+    </main>
+    <footer>
+        <p>&copy; 2024 Simulador ARM64</p>
+    </footer>
+    <script src="viz/viz.js"></script>
+    <script src="viz/full.render.js"></script>
+    <script src="components/TYPE.js"></script>
+    <script src="components/Value.js"></script>
+    <script src="components/CST.js"></script>
+    <script src="components/Symbol.js"></script>
+    <script src="components/Quad.js"></script>
+    <script src="components/ParseError.js"></script>
+    <script src="parser/parser.js"></script>
+    <script src="parser/parserS.js"></script>
+    <script src="script.js"></script>
+    <script src="console.js"></script>
+    <script src="memory.js"></script>
+    <script src="simulation.js"></script>
+</body>
+</html>

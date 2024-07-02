@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista Completa del Árbol</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #fullReportImageWrapper {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            cursor: grab;
+        }
+
+        #fullReportImage {
+            display: block;
+            width: auto;
+            height: auto;
+        }
+
+        #fullReportImageWrapper:active {
+            cursor: grabbing;
+        }
+    </style>
+</head>
+<body>
+    <div id="fullReportImageWrapper">
+        <img id="fullReportImage" src="" alt="Reporte Completo">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const base64Image = urlParams.get('image');
+            const fullReportImage = document.getElementById('fullReportImage');
+
+            if (base64Image) {
+                fullReportImage.src = 'data:image/svg+xml;base64,' + base64Image;
+            }
+
+            // Eventos para arrastrar la imagen
+            let isDragging = false;
+            let startX, startY, scrollLeft, scrollTop;
+
+            const fullReportImageWrapper = document.getElementById('fullReportImageWrapper');
+
+            fullReportImageWrapper.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.pageX - fullReportImageWrapper.offsetLeft;
+                startY = e.pageY - fullReportImageWrapper.offsetTop;
+                scrollLeft = fullReportImageWrapper.scrollLeft;
+                scrollTop = fullReportImageWrapper.scrollTop;
+                fullReportImageWrapper.style.cursor = 'grabbing';
+            });
+
+            fullReportImageWrapper.addEventListener('mouseleave', () => {
+                isDragging = false;
+                fullReportImageWrapper.style.cursor = 'grab';
+            });
+
+            fullReportImageWrapper.addEventListener('mouseup', () => {
+                isDragging = false;
+                fullReportImageWrapper.style.cursor = 'grab';
+            });
+
+            fullReportImageWrapper.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.pageX - fullReportImageWrapper.offsetLeft;
+                const y = e.pageY - fullReportImageWrapper.offsetTop;
+                const walkX = (x - startX);
+                const walkY = (y - startY);
+                fullReportImageWrapper.scrollLeft = scrollLeft - walkX;
+                fullReportImageWrapper.scrollTop = scrollTop - walkY;
+            });
+
+            // Evitar comportamiento de texto seleccionable durante el arrastre
+            fullReportImageWrapper.addEventListener('dragstart', (e) => {
+                e.preventDefault();
+            });
+
+            fullReportImageWrapper.addEventListener('selectstart', (e) => {
+                e.preventDefault();
+            });
+        });
+    </script>
+</body>
+</html>
